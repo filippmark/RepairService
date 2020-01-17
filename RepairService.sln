@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepairService", "RepairService\RepairService.csproj", "{68B4F86C-93BD-4068-899E-274F28153BAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DBRepository\DAL.csproj", "{0E939A12-8ACD-4C18-8ED2-7CE697998C9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{2486A1F5-FC49-4101-87DD-955468D1547D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68B4F86C-93BD-4068-899E-274F28153BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B4F86C-93BD-4068-899E-274F28153BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B4F86C-93BD-4068-899E-274F28153BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B4F86C-93BD-4068-899E-274F28153BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E939A12-8ACD-4C18-8ED2-7CE697998C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E939A12-8ACD-4C18-8ED2-7CE697998C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E939A12-8ACD-4C18-8ED2-7CE697998C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E939A12-8ACD-4C18-8ED2-7CE697998C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2486A1F5-FC49-4101-87DD-955468D1547D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2486A1F5-FC49-4101-87DD-955468D1547D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2486A1F5-FC49-4101-87DD-955468D1547D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2486A1F5-FC49-4101-87DD-955468D1547D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F5C32147-DE41-4439-B3A1-DDA480F8B8EA}
+	EndGlobalSection
+EndGlobal
