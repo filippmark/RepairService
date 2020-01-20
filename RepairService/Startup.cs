@@ -7,7 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DAL;
+using DAL.Interfaces;
+using DAL.Repositories;
+using DAL.Factories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using RepairService.Helpers;
 
 namespace RepairService
 {
@@ -20,24 +26,42 @@ namespace RepairService
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = AuthOptions.ISSUER,
+                            ValidateLifetime = true,
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
+
+
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(connection));
+
+            services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
+            services.AddScoped<IEmployerRepository>(provider => new EmployerRepository(connection, provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<IBuilderRepository>(provider => new BuilderRepository(connection, provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<IOrderRepository>(provider => new OrderRepository(connection, provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped<IReviewRepository>(provider => new ReviewRepository(connection, provider.GetService<IRepositoryContextFactory>()));
+            
 
             services.AddControllersWithViews();
 
-            // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -47,7 +71,6 @@ namespace RepairService
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

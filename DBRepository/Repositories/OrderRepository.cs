@@ -4,30 +4,57 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL.Entities;
 using DAL.Interfaces;
-
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    public class OrderRepository : IOrderRepository
+    public class OrderRepository : BaseRepository, IOrderRepository
     {
-        public Task AddOrder(Order order)
+        public OrderRepository(string connectionString, IRepositoryContextFactory context) : base(connectionString, context)
         {
-            throw new NotImplementedException();
         }
 
-        public Task DeleteOrder(int orderId)
+        public async Task AddOrder(Order order)
         {
-            throw new NotImplementedException();
+            using(var context = Context.CreateDbContext(ConnectionString))
+            {
+                context.Orders.Add(order);
+                await context.SaveChangesAsync();
+            }
+                    
         }
 
-        public Task<Order> GetOrder(int orderId)
+        public async Task DeleteOrder(int orderId)
         {
-            throw new NotImplementedException();
+            Order order = new Order()
+            {
+                Id = orderId,
+            };
+
+            using(var context = Context.CreateDbContext(ConnectionString))
+            {
+                context.Orders.Remove(order);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task<List<Order>> GetOrders(int amount, int pageIndex)
+        public async Task<Order> GetOrder(int orderId)
         {
-            throw new NotImplementedException();
+            using (var context = Context.CreateDbContext(ConnectionString))
+            {
+                return await context.Orders.FirstOrDefaultAsync(p => p.Id == orderId);
+            }
+        }
+
+        public async Task<List<Order>> GetOrders(int pageSize, int pageIndex)
+        {
+            using (var context = Context.CreateDbContext(ConnectionString))
+            {
+                var orders = context.Orders.AsQueryable();
+
+                return await orders.OrderByDescending(p => p.CreatedAt).Skip(pageSize * pageIndex).Take(pageSize).ToListAsync();
+            }
         }
     }
 }

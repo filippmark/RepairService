@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IReviewRepository
+    public interface IReviewRepository
     {
         Task<List<Review>> GetReviews(int builderId,  int amount, int pageIndex);
 

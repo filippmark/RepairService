@@ -4,29 +4,56 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    public class ReviewRepository : IReviewRepository
+    public class ReviewRepository : BaseRepository , IReviewRepository
     {
-        public Task AddReview(Review review)
+        public ReviewRepository(string connectionString, IRepositoryContextFactory context) : base(connectionString, context)
         {
-            throw new NotImplementedException();
         }
 
-        public Task DeleteReview(int reviewId)
+        public async Task AddReview(Review review)
         {
-            throw new NotImplementedException();
+            using(var context = Context.CreateDbContext(ConnectionString))
+            {
+                context.Reviews.Add(review);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task<Review> GetReview(int reviewId)
+        public async Task DeleteReview(int reviewId)
         {
-            throw new NotImplementedException();
+            using(var context = Context.CreateDbContext(ConnectionString))
+            {
+                var review = new Review() { Id = reviewId };
+                context.Reviews.Remove(review);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task<List<Review>> GetReviews(int builderId, int amount, int pageIndex)
+        public async Task<Review> GetReview(int reviewId)
         {
-            throw new NotImplementedException();
+            using (var context = Context.CreateDbContext(ConnectionString))
+            {
+                return await context.Reviews.FirstOrDefaultAsync(p => p.Id == reviewId);
+            }
+        }
+
+        public async Task<List<Review>> GetReviews(int builderId, int pageSize, int pageIndex)
+        {
+            
+            using (var context =  Context.CreateDbContext(ConnectionString))
+            {
+                var reviews = context.Reviews.AsQueryable();
+
+                reviews = reviews.Where(p => p.BuilderId == builderId);
+
+                return await reviews.OrderByDescending(p => p.CreatedAt).Skip(pageSize * pageIndex).Take(pageSize).ToListAsync();
+
+            }
         }
     }
 }
