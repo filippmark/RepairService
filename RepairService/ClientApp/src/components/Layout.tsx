@@ -9,4 +9,4 @@ export default (props: { children?: React.ReactNode }) => (
             {props.children}
         </Container>
     </React.Fragment>
-);
+)

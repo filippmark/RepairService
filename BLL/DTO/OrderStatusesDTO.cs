@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models
+namespace BLL.DTO
 {
     public enum OrderStatusesDTO
     {
         Available,
         Booked,
-        Approved
+        Approved,
+        Canceled
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models
+namespace BLL.DTO
 {
     public class ReviewDTO
     {

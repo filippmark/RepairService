@@ -13,7 +13,10 @@ using DAL.Factories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using RepairService.Helpers;
+using BLL.Helpers;
+using AutoMapper;
+using BLL.Interfaces;
+using BLL.Services;
 
 namespace RepairService
 {
@@ -47,13 +50,20 @@ namespace RepairService
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
 
+
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
             services.AddScoped<IEmployerRepository>(provider => new EmployerRepository(connection, provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<IBuilderRepository>(provider => new BuilderRepository(connection, provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<IOrderRepository>(provider => new OrderRepository(connection, provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<IReviewRepository>(provider => new ReviewRepository(connection, provider.GetService<IRepositoryContextFactory>()));
-            
 
+
+            services.AddScoped<IHashPasswordService, HashPasswordService>();
+            services.AddScoped<ISignUpService, SignUpService>();
+            services.AddScoped<ISignInService, SignInService>();
+
+
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
 
             services.AddSpaStaticFiles(configuration =>
@@ -82,9 +92,7 @@ namespace RepairService
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>

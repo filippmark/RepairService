@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace RepairService.Helpers
+namespace BLL.Helpers
 {
     public class AuthOptions
     {
