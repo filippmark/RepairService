@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RepairService.Filters;
 
 namespace RepairService.Controllers
 {
     [ApiController]
+    [Log]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {

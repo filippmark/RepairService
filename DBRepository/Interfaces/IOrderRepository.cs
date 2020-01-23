@@ -17,5 +17,7 @@ namespace DAL.Interfaces
 
         Task DeleteOrder(int orderId);
 
+        Task UpdateOrder(Order order);
+
     }
 }

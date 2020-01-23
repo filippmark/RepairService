@@ -6,7 +6,7 @@ using BLL.DTO;
 
 namespace BLL.Interfaces
 {
-    interface IOrderService
+    public interface IOrderService
     {
         public Task CreateOrder(OrderDTO order);
 

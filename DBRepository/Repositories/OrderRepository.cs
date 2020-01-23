@@ -56,5 +56,15 @@ namespace DAL.Repositories
                 return await orders.OrderByDescending(p => p.CreatedAt).Skip(pageSize * pageIndex).Take(pageSize).ToListAsync();
             }
         }
+
+        public async Task UpdateOrder(Order order)
+        {
+            using (var context = Context.CreateDbContext(ConnectionString))
+            {
+                context.Orders.Update(order);
+                await context.SaveChangesAsync();
+            }
+        }
+
     }
 }

@@ -31,7 +31,12 @@ namespace BLL.Services
         public async Task UpdateOrderStatus(int status, int orderId)
         {
             Order order = await _orderRepository.GetOrder(orderId);
-            order.Status = (OrderStatuses) status;
+            if (order != null)
+            {
+                order.Status = (OrderStatuses)status;
+                await _orderRepository.UpdateOrder(order);
+            }
+                
         }
     }
 }

@@ -57,10 +57,10 @@ namespace RepairService
             services.AddScoped<IOrderRepository>(provider => new OrderRepository(connection, provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<IReviewRepository>(provider => new ReviewRepository(connection, provider.GetService<IRepositoryContextFactory>()));
 
-
             services.AddScoped<IHashPasswordService, HashPasswordService>();
             services.AddScoped<ISignUpService, SignUpService>();
             services.AddScoped<ISignInService, SignInService>();
+            services.AddScoped<IOrderService, OrderService>();
 
 
             services.AddAutoMapper(typeof(Startup));

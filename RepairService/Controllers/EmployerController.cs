@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using RepairService.ViewModels;
 using BLL.DTO;
 using BLL.Interfaces;
+using RepairService.Filters;
 
 namespace RepairService.Controllers
 {
@@ -27,6 +28,7 @@ namespace RepairService.Controllers
             _signInService = signInService;
         }
 
+        [ValidateModel]
         [HttpPost("signup")]
         public async Task<IActionResult> SignUp(SignUpModel model)
         {
@@ -35,7 +37,7 @@ namespace RepairService.Controllers
             return Ok();
         }
 
-
+        [ValidateModel]
         [HttpPost("signin")]
         public async Task<IActionResult> SignIn(SignInModel model)
         {
