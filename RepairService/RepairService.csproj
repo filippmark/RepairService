@@ -35,6 +35,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\Order\OrderAddress\OrderAddress.tsx" />
+    <None Remove="ClientApp\src\components\Order\OrderDescription\Order.tsx" />
+    <None Remove="ClientApp\src\components\Order\OrderPrice\OrderPrice.tsx" />
+    <None Remove="ClientApp\src\components\Order\OrderTime\OrderDay\OrderDay.tsx" />
+    <None Remove="ClientApp\src\components\Order\OrderTime\OrderTime.tsx" />
     <None Remove="ClientApp\src\components\SignUp.tsx" />
   </ItemGroup>
 
@@ -43,7 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\components\SignUp.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Order\Order.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Order\OrderAddress\OrderAddress.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Order\OrderPrice\OrderPrice.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Order\OrderTime\OrderDay\OrderDay.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Order\OrderTime\OrderTime.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\SignUp\SignUp.tsx" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

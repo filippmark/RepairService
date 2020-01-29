@@ -3,9 +3,6 @@ using BLL.DTO;
 using BLL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -35,7 +32,6 @@ namespace BLL.Services
                 builder.Password = hashedPassword;
                 await _builderRepository.CreateBuilder(builder);
             }
-            
         }
 
         public async Task SingUp(EmployerDTO employerDTO)
@@ -49,7 +45,6 @@ namespace BLL.Services
                 await _employerRepository.CreateEmployer(employer);
             }
         }
-
 
     }
 }
