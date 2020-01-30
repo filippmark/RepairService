@@ -1,23 +1,26 @@
 ﻿import * as React from 'react';
 import { connect } from 'react-redux';
 import OrderDay from './OrderDay/OrderDay';
-
+import { ApplicationState } from '../../../store';
+import * as OrderStore from '../../../store/Order'
 
 export interface IAppProps {
 }
 
-export default class OrderDescription extends React.Component<IAppProps> {
+export default class OrderTime extends React.Component<IAppProps> {
     public render() {
         return (
             <div className="border-bottom mb-1">
-                <div className="row">
+                <div className="d-flex flex-nowrap overflow-auto">
                     <OrderDay></OrderDay>
                     <OrderDay></OrderDay>
                     <OrderDay></OrderDay>
                     <OrderDay></OrderDay>
-
+                    <OrderDay></OrderDay>
+                    <OrderDay></OrderDay>
+                    <OrderDay></OrderDay>
+                    <OrderDay></OrderDay>
                 </div>
-                <OrderDay></OrderDay>
                 <h5> Время выполнения заказа </h5>
                 <div className="form-check form-check-inline">
                     <input className="form-check-input" name="time" type="radio" value="1"/>
@@ -31,11 +34,14 @@ export default class OrderDescription extends React.Component<IAppProps> {
                     <input className="form-check-input" name="time" type="radio" value="option3"/>
                     <label className="form-check-label" htmlFor="inlineCheckbox3"> 16:00 - 20:00</label>
                 </div>
-            </div>
 
+            </div>
         );
     }
 }
 
 
-connect()(OrderDescription);
+connect(
+    (state: ApplicationState) => state.order,
+    OrderStore.actionCreators
+)(OrderTime);

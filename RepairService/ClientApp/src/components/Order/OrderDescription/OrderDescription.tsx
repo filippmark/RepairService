@@ -1,5 +1,7 @@
 ﻿import * as React from 'react';
 import { connect } from 'react-redux';
+import { ApplicationState } from '../../../store';
+import * as OrderStore from '../../../store/Order'
 
 export interface IAppProps {
 }
@@ -24,4 +26,7 @@ export default class OrderDescription extends React.Component<IAppProps> {
 }
 
 
-connect()(OrderDescription);
+connect(
+    (state: ApplicationState) => state.order,
+    OrderStore.actionCreators
+)(OrderDescription);

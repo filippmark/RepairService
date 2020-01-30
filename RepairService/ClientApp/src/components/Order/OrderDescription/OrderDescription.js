@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var react_redux_1 = require("react-redux");
+var OrderStore = require("../../../store/Order");
 var OrderDescription = /** @class */ (function (_super) {
     __extends(OrderDescription, _super);
     function OrderDescription() {
@@ -34,5 +35,5 @@ var OrderDescription = /** @class */ (function (_super) {
     return OrderDescription;
 }(React.Component));
 exports.default = OrderDescription;
-react_redux_1.connect()(OrderDescription);
+react_redux_1.connect(function (state) { return state.order; }, OrderStore.actionCreators)(OrderDescription);
 //# sourceMappingURL=OrderDescription.js.map

@@ -12,6 +12,7 @@ const Order = () => (
         <OrderAddress></OrderAddress>
         <OrderTime></OrderTime>
         <OrderPrice></OrderPrice>
+        <input className="btn btn-primary mt-2" type="submit" value="Подтвердить"/> 
     </div>
 );
 

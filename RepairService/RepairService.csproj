@@ -41,6 +41,7 @@
     <None Remove="ClientApp\src\components\Order\OrderTime\OrderDay\OrderDay.tsx" />
     <None Remove="ClientApp\src\components\Order\OrderTime\OrderTime.tsx" />
     <None Remove="ClientApp\src\components\SignUp.tsx" />
+    <None Remove="ClientApp\src\store\Order.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +55,7 @@
     <TypeScriptCompile Include="ClientApp\src\components\Order\OrderTime\OrderDay\OrderDay.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Order\OrderTime\OrderTime.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\SignUp\SignUp.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\store\Order.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

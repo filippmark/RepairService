@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route } from 'react-router';
-import Layout from './components/Layout';
+import Layout from './components/Common/Layout/Layout';
 import Home from './components/Home/Home';
 import Counter from './components/Counter';
 import FetchData from './components/FetchData';
