@@ -24,6 +24,9 @@ var OrderTime = /** @class */ (function (_super) {
         _this.state = {
             dates: []
         };
+        _this._setPartOfDay = function (event) {
+            _this.props.setPartOfDayOrderAction(parseInt(event.target.value));
+        };
         _this._createDates = function () {
             var startDate = new Date();
             var days = 14;
@@ -41,19 +44,19 @@ var OrderTime = /** @class */ (function (_super) {
     };
     OrderTime.prototype.render = function () {
         return (React.createElement("div", { className: "border-bottom mb-1" },
-            React.createElement("div", { className: "d-flex flex-nowrap overflow-auto" }, this.state.dates.map(function (date) { return (React.createElement(OrderDay_1.default, { date: date, key: date.toUTCString() })); })),
+            React.createElement("div", { className: "d-flex flex-nowrap overflow-auto" }, this.state.dates.map(function (date) { return (React.createElement(OrderDay_1.default, { ownDate: date, key: date.toUTCString() })); })),
             React.createElement("h5", null, " \u0412\u0440\u0435\u043C\u044F \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044F \u0437\u0430\u043A\u0430\u0437\u0430 "),
             React.createElement("div", { className: "form-check form-check-inline" },
-                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "1" }),
+                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "1", onChange: this._setPartOfDay }),
                 React.createElement("label", { className: "form-check-label", htmlFor: "inlineCheckbox1" }, " 8:00 - 12:00 ")),
             React.createElement("div", { className: "form-check form-check-inline" },
-                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "option2" }),
+                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "option2", onChange: this._setPartOfDay }),
                 React.createElement("label", { className: "form-check-label", htmlFor: "inlineCheckbox2" }, " 12:00 - 16:00 ")),
             React.createElement("div", { className: "form-check form-check-inline" },
-                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "3" }),
+                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "3", onChange: this._setPartOfDay }),
                 React.createElement("label", { className: "form-check-label", htmlFor: "inlineCheckbox3" }, " 16:00 - 20:00")),
             React.createElement("div", { className: "form-check form-check-inline" },
-                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "4" }),
+                React.createElement("input", { className: "form-check-input", name: "time", type: "radio", value: "4", onChange: this._setPartOfDay }),
                 React.createElement("label", { className: "form-check-label", htmlFor: "inlineCheckbox3" }, " \u041B\u044E\u0431\u043E\u0435 \u0432\u0440\u0435\u043C\u044F "))));
     };
     return OrderTime;

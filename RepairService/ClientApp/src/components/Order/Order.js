@@ -23,11 +23,11 @@ var OrderStore = require("../../store/Order");
 var Order = /** @class */ (function (_super) {
     __extends(Order, _super);
     function Order() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._addOrder = function (event) {
+        };
+        return _this;
     }
-    Order.prototype.componentDidMount = function () {
-        console.log(this.props);
-    };
     Order.prototype.render = function () {
         return (React.createElement("div", { className: "container-md bg-light p-3 mb-2" },
             React.createElement("h1", null, "\u041E\u0444\u043E\u0440\u043C\u043B\u0435\u043D\u0438\u0435 \u0437\u0430\u043A\u0430\u0437\u0430"),
@@ -35,7 +35,7 @@ var Order = /** @class */ (function (_super) {
             React.createElement(OrderAddress_1.default, null),
             React.createElement(OrderTime_1.default, null),
             React.createElement(OrderPrice_1.default, null),
-            React.createElement("input", { className: "btn btn-primary mt-2", type: "submit", value: "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C" })));
+            React.createElement("input", { className: "btn btn-primary mt-2", type: "button", value: "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C", onClick: this._addOrder })));
     };
     return Order;
 }(React.Component));

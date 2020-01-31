@@ -42,23 +42,41 @@ var OrderDay = /** @class */ (function (_super) {
             'Пятница',
             'Суббота'
         ];
+        _this.state = {
+            isSelected: false,
+        };
+        _this._setDate = function (event) {
+            _this.props.setDateExecutionOrderAction(_this.props.ownDate);
+            _this.setState({ isSelected: true });
+        };
         return _this;
     }
+    OrderDay.prototype.componentDidUpdate = function () {
+        var _a;
+        if (((_a = this.props.date) === null || _a === void 0 ? void 0 : _a.getTime()) === this.props.ownDate.getTime()) {
+            if (!this.state.isSelected) {
+                this.setState({ isSelected: true });
+            }
+        }
+        else if (this.state.isSelected) {
+            this.setState({ isSelected: false });
+        }
+    };
     OrderDay.prototype.render = function () {
         var _a, _b, _c;
-        return (React.createElement("div", { className: "card m-2 flex-shrink-0 flex-grow-0", style: { width: '12rem' } },
-            React.createElement("div", { className: "card-body" },
-                React.createElement("h6", { className: "card-subtitle mb-2 text-muted text-center" },
+        return (React.createElement("div", { className: "card m-2 flex-shrink-0 flex-grow-0 " + (this.state.isSelected ? 'bg-success' : ''), style: { width: '12rem' } },
+            React.createElement("div", { className: "card-body", onClick: this._setDate },
+                React.createElement("h6", { className: "card-subtitle mb-2 ${this.state.isSelected ? 'text-white' : 'text-muted'} text-center" },
                     " ",
-                    this._months[(_a = this.props) === null || _a === void 0 ? void 0 : _a.date.getMonth()],
+                    this._months[(_a = this.props) === null || _a === void 0 ? void 0 : _a.ownDate.getMonth()],
                     " "),
                 React.createElement("p", { className: "card-title display-1 text-center" },
                     " ", (_b = this.props) === null || _b === void 0 ? void 0 :
-                    _b.date.getDate(),
+                    _b.ownDate.getDate(),
                     " "),
-                React.createElement("p", { className: "card-text text-center" }, this._daysOfWeek[(_c = this.props) === null || _c === void 0 ? void 0 : _c.date.getDay()]))));
+                React.createElement("p", { className: "card-text text-center" }, this._daysOfWeek[(_c = this.props) === null || _c === void 0 ? void 0 : _c.ownDate.getDay()]))));
     };
     return OrderDay;
 }(React.Component));
-exports.default = react_redux_1.connect(null, OrderStore.actionCreators)(OrderDay);
+exports.default = react_redux_1.connect(function (state) { var _a; return ({ date: (_a = state.order) === null || _a === void 0 ? void 0 : _a.date }); }, OrderStore.actionCreators)(OrderDay);
 //# sourceMappingURL=OrderDay.js.map

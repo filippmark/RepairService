@@ -5,7 +5,6 @@ import OrderAddress from './OrderAddress/OrderAddress';
 import OrderTime from './OrderTime/OrderTime';
 import OrderPrice from './OrderPrice/OrderPrice';
 import { RouteComponentProps } from 'react-router';
-
 import { ApplicationState } from '../../store';
 import * as OrderStore from '../../store/Order'
 
@@ -16,8 +15,8 @@ type OrderAddressProps =
 
 class Order extends React.Component<OrderAddressProps> {
 
-    componentDidMount() {
-        console.log(this.props);
+    _addOrder = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+
     }
 
     public render() {
@@ -28,7 +27,7 @@ class Order extends React.Component<OrderAddressProps> {
                 <OrderAddress></OrderAddress>
                 <OrderTime></OrderTime>
                 <OrderPrice></OrderPrice>
-                <input className="btn btn-primary mt-2" type="submit" value="Подтвердить" />
+                <input className="btn btn-primary mt-2" type="button" value="Подтвердить" onClick={this._addOrder} />
             </div>)
     }
 

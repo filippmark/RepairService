@@ -20,7 +20,9 @@ exports.actionCreators = {
     setRewardForOrder: function (reward) { return ({ type: 'SET_REWARD_FOR_ORDER', reward: reward }); },
     setIsNegotiableOrderReward: function (isNegotiable) { return ({ type: 'SET_IS_NEGOTIABLE_REWARD_ACTION', isNegotiable: isNegotiable }); },
     incrementAmountOfInvalidForms: function () { return ({ type: 'INCREMENT_INVALID_FORMS_COUNT' }); },
-    decrementAmountOfInvalidForms: function () { return ({ type: 'DECREMENT_INVALID_FORMS_COUNT' }); }
+    decrementAmountOfInvalidForms: function () { return ({ type: 'DECREMENT_INVALID_FORMS_COUNT' }); },
+    setDateExecutionOrderAction: function (date) { return ({ type: 'SET_DATE_EXECUTION_ORDER', date: date }); },
+    setPartOfDayOrderAction: function (part) { return ({ type: 'SET_PART_OF_DAY', part: part }); }
 };
 //INITIAL STATE
 var initialState = {
@@ -31,6 +33,8 @@ var initialState = {
     reward: 0,
     isNegotiable: false,
     amountOfInvalidForms: 0,
+    date: null,
+    partOfDay: 0
 };
 //REDUCER
 exports.reducer = function (state, incomingAction) {
@@ -55,6 +59,10 @@ exports.reducer = function (state, incomingAction) {
             return __assign(__assign({}, state), { amountOfInvalidForms: ++state.amountOfInvalidForms });
         case 'DECREMENT_INVALID_FORMS_COUNT':
             return __assign(__assign({}, state), { amountOfInvalidForms: --state.amountOfInvalidForms });
+        case 'SET_DATE_EXECUTION_ORDER':
+            return __assign(__assign({}, state), { date: action.date });
+        case 'SET_PART_OF_DAY':
+            return __assign(__assign({}, state), { partOfDay: action.part });
         default:
             return state;
     }
