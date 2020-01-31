@@ -14,23 +14,51 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var react_redux_1 = require("react-redux");
-require("./OrderDay.css");
 var OrderStore = require("../../../../store/Order");
+var react_redux_1 = require("react-redux");
 var OrderDay = /** @class */ (function (_super) {
     __extends(OrderDay, _super);
     function OrderDay() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._months = [
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Ноябрь',
+            'Декабрь',
+        ];
+        _this._daysOfWeek = [
+            'Воскресенье',
+            'Понедельник',
+            'Вторник',
+            'Среда',
+            'Четверг',
+            'Пятница',
+            'Суббота'
+        ];
+        return _this;
     }
     OrderDay.prototype.render = function () {
+        var _a, _b, _c;
         return (React.createElement("div", { className: "card m-2 flex-shrink-0 flex-grow-0", style: { width: '12rem' } },
             React.createElement("div", { className: "card-body" },
-                React.createElement("h6", { className: "card-subtitle mb-2 text-muted text-center" }, " \u0424\u0435\u0432\u0440\u0430\u043B\u044C "),
-                React.createElement("p", { className: "card-title display-1 text-center" }, " 31 "),
-                React.createElement("p", { className: "card-text text-center" }, "\u041F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A"))));
+                React.createElement("h6", { className: "card-subtitle mb-2 text-muted text-center" },
+                    " ",
+                    this._months[(_a = this.props) === null || _a === void 0 ? void 0 : _a.date.getMonth()],
+                    " "),
+                React.createElement("p", { className: "card-title display-1 text-center" },
+                    " ", (_b = this.props) === null || _b === void 0 ? void 0 :
+                    _b.date.getDate(),
+                    " "),
+                React.createElement("p", { className: "card-text text-center" }, this._daysOfWeek[(_c = this.props) === null || _c === void 0 ? void 0 : _c.date.getDay()]))));
     };
     return OrderDay;
 }(React.Component));
-exports.default = OrderDay;
-react_redux_1.connect(function (state) { return state.order; }, OrderStore.actionCreators)(OrderDay);
+exports.default = react_redux_1.connect(null, OrderStore.actionCreators)(OrderDay);
 //# sourceMappingURL=OrderDay.js.map

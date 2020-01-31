@@ -15,10 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.actionCreators = {
     setShortOrderDescription: function (shortDescription) { return ({ type: 'SET_SHORT_ORDER_DESCRIPTION', shortDescription: shortDescription }); },
     setFullOrderDescription: function (fullDescription) { return ({ type: 'SET_FULL_ORDER_DESCRIPTION', fullDescription: fullDescription }); },
-    SetTownOrder: function (town) { return ({ type: 'SET_TOWN_ORDER', town: town }); },
-    SetStreetHouseOrder: function (streetHouse) { return ({ type: 'SET_STREET_HOUSE_ORDER', streetHouse: streetHouse }); },
-    SetRewardForOrderDescription: function (reward) { return ({ type: 'SET_REWARD_FOR_ORDER', reward: reward }); },
-    SetIsNegotiableOrderReward: function (isNegotiable) { return ({ type: 'SET_IS_NEGOTIABLE_REWARD_ACTION', isNegotiable: isNegotiable }); },
+    setTownOrder: function (town) { return ({ type: 'SET_TOWN_ORDER', town: town }); },
+    setStreetHouseOrder: function (streetHouse) { return ({ type: 'SET_STREET_HOUSE_ORDER', streetHouse: streetHouse }); },
+    setRewardForOrder: function (reward) { return ({ type: 'SET_REWARD_FOR_ORDER', reward: reward }); },
+    setIsNegotiableOrderReward: function (isNegotiable) { return ({ type: 'SET_IS_NEGOTIABLE_REWARD_ACTION', isNegotiable: isNegotiable }); },
+    incrementAmountOfInvalidForms: function () { return ({ type: 'INCREMENT_INVALID_FORMS_COUNT' }); },
+    decrementAmountOfInvalidForms: function () { return ({ type: 'DECREMENT_INVALID_FORMS_COUNT' }); }
 };
 //INITIAL STATE
 var initialState = {
@@ -28,6 +30,7 @@ var initialState = {
     streetHouse: '',
     reward: 0,
     isNegotiable: false,
+    amountOfInvalidForms: 0,
 };
 //REDUCER
 exports.reducer = function (state, incomingAction) {
@@ -48,6 +51,10 @@ exports.reducer = function (state, incomingAction) {
             return __assign(__assign({}, state), { reward: action.reward });
         case 'SET_IS_NEGOTIABLE_REWARD_ACTION':
             return __assign(__assign({}, state), { isNegotiable: action.isNegotiable });
+        case 'INCREMENT_INVALID_FORMS_COUNT':
+            return __assign(__assign({}, state), { amountOfInvalidForms: ++state.amountOfInvalidForms });
+        case 'DECREMENT_INVALID_FORMS_COUNT':
+            return __assign(__assign({}, state), { amountOfInvalidForms: --state.amountOfInvalidForms });
         default:
             return state;
     }
