@@ -15,8 +15,14 @@ namespace RepairService.Profiles
         {
             CreateMap<SignUpModel, BuilderDTO>();
             CreateMap<SignUpModel, EmployerDTO>();
+            CreateMap<SignInModel, BuilderDTO>();
+            CreateMap<SignInModel, EmployerDTO>();
             CreateMap<BuilderDTO, Builder>();
             CreateMap<EmployerDTO, Employer>();
+            CreateMap<OrderModel, OrderDTO>();
+            CreateMap<OrderDTO, Order>();
+            CreateMap<Order, OrderDTO>();
+            CreateMap<OrderDTO, OrderModel>();
         }
 
     }

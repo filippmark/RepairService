@@ -16,6 +16,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var OrderStore = require("../../../../store/Order");
 var react_redux_1 = require("react-redux");
+require("./OrderDay");
 var OrderDay = /** @class */ (function (_super) {
     __extends(OrderDay, _super);
     function OrderDay() {

@@ -50,19 +50,19 @@ class OrderTime extends React.Component<IProps, IState> {
                 </div>
                 <h5> Время выполнения заказа </h5>
                 <div className="form-check form-check-inline">
-                    <input className="form-check-input" name="time" type="radio" value="1" onChange={this._setPartOfDay}/>
+                    <input className="form-check-input" name="time" type="radio" value="0" onChange={this._setPartOfDay}/>
                     <label className="form-check-label" htmlFor="inlineCheckbox1"> 8:00 - 12:00 </label>
                 </div>
                 <div className="form-check form-check-inline">
-                    <input className="form-check-input" name="time" type="radio" value="option2" onChange={this._setPartOfDay}/>
+                    <input className="form-check-input" name="time" type="radio" value="1" onChange={this._setPartOfDay}/>
                     <label className="form-check-label" htmlFor="inlineCheckbox2"> 12:00 - 16:00 </label>
                 </div>
                 <div className="form-check form-check-inline">
-                    <input className="form-check-input" name="time" type="radio" value="3" onChange={this._setPartOfDay}/>
+                    <input className="form-check-input" name="time" type="radio" value="2" onChange={this._setPartOfDay}/>
                     <label className="form-check-label" htmlFor="inlineCheckbox3"> 16:00 - 20:00</label>
                 </div>
                 <div className="form-check form-check-inline">
-                    <input className="form-check-input" name="time" type="radio" value="4" onChange={this._setPartOfDay}/>
+                    <input className="form-check-input" name="time" type="radio" value="3" onChange={this._setPartOfDay}/>
                     <label className="form-check-label" htmlFor="inlineCheckbox3"> Любое время </label>
                 </div>
             </div>

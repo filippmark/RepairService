@@ -2,6 +2,7 @@
 import * as OrderStore from '../../../../store/Order'
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../../../store';
+import './OrderDay';
 
 interface props {
     ownDate: Date,

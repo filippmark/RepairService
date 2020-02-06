@@ -48,14 +48,15 @@ namespace RepairService.Controllers
                 var response = new
                 {
                     jwt = token,
-                    userEmail = model.Email
+                    userEmail = model.Email,
+                    id = employer.Id
                 };
                 return Ok(response);
             }
             else
             {
                 return Unauthorized();
-            }
+            }   
         }
     }
 }

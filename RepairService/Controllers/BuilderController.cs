@@ -49,7 +49,8 @@ namespace RepairService.Controllers
                 var response = new
                 {
                     jwt = token,
-                    userEmail = model.Email
+                    userEmail = model.Email,
+                    id = builder.Id
                 };
                 return Ok(response);
             }

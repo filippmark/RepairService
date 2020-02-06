@@ -8,20 +8,38 @@ namespace RepairService.ViewModels
 {
     public class OrderModel
     {
+        public int? Id { get; set; }
+
+        [Required]
+        public string ShortDescription { get; set; }
+
+        [Required]
+        public string FullDescription { get; set; }
 
         [Required]
         public string Town { get; set; }
 
         [Required]
-        public int Street { get; set; }
-
+        public string Street { get; set; }
+        
         [Required]
         public string House { get; set; }
 
         [Required]
-        public string Description { get; set; }
+        public DateTime Date { get; set; }
+        
+        [Required]
+        public int PartOfDay { get; set; }
 
         [Required]
-        public decimal Price { get; set; }
+        public decimal Reward { get; set; }
+
+        [Required]
+        public bool IsNegotiable { get; set; }
+
+
+        [Required]
+        public int EmployerId { get; set; }
+
     }
 }

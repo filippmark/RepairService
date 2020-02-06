@@ -7,7 +7,7 @@ import FetchData from './components/FetchData';
 import SignUp from './components/SignUp/SignUp'; 
 import SignIn from './components/SignIn/SignIn';
 import Order from './components/Order/Order';
-
+import Profile from './components/Profile/Profile';
 import './custom.css'
 
 export default () => (
@@ -17,6 +17,7 @@ export default () => (
         <Route path='/sign-in' component={SignIn} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
-        <Route path='/order' component={Order}/>
+        <Route path='/order' component={Order} />
+        <Route path='/profile' component={Profile} />
     </Layout>
 );

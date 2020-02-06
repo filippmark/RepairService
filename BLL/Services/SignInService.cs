@@ -11,6 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using BLL.Helpers;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using System.Security.Principal;
 
 namespace BLL.Services
 {
@@ -34,8 +35,9 @@ namespace BLL.Services
         public async Task<string> SingIn(BuilderDTO builderDTO)
         {
             Builder builder = await _builderRepository.GetBuilder(builderDTO.Email);
-            if ((null == builder) && (_hashPasswordService.CheckPassword(builderDTO.Password, builder.Password)))
+            if ((null != builder) && (_hashPasswordService.CheckPassword(builderDTO.Password, builder.Password)))
             {
+                builderDTO.Id = builder.Id;
                 return GenerateJWTToken(builder);
             }
             else
@@ -47,8 +49,9 @@ namespace BLL.Services
         public async Task<string> SingIn(EmployerDTO employerDTO)
         {
             Employer employer = await _employerRepository.GetEmployer(employerDTO.Email);
-            if ((null == employer) && (_hashPasswordService.CheckPassword(employerDTO.Password, employer.Password)))
+            if ((null != employer) && (_hashPasswordService.CheckPassword(employerDTO.Password, employer.Password)))
             {
+                employerDTO.Id = employer.Id;
                 return GenerateJWTToken(employer);
             }
             else
@@ -61,23 +64,30 @@ namespace BLL.Services
 
         private  string GenerateJWTToken(User user)
         {
+
+
+            var handler = new JwtSecurityTokenHandler();
+
+
             var claims = new List<Claim>
-                    {
-                        new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-                    };
-            var identity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
+                new Claim("id" , user.Id.ToString())
+            };
 
-            JwtSecurityToken jwt =  new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    claims: identity.Claims,
-                    notBefore: DateTime.Now,
-                    expires: DateTime.Now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
 
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            var identity = new ClaimsIdentity(claims);
 
-            return encodedJwt;
+            var token = handler.CreateJwtSecurityToken(
+                subject: identity,
+                signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256),
+                audience: AuthOptions.AUDIENCE,
+                issuer: AuthOptions.ISSUER,
+                expires: DateTime.Now.AddSeconds(AuthOptions.LIFETIME)
+           );
+
+
+            return handler.WriteToken(token);
         }
 
     }

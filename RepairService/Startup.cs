@@ -50,7 +50,7 @@ namespace RepairService
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
 
-
+            services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(connection));
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
             services.AddScoped<IEmployerRepository>(provider => new EmployerRepository(connection, provider.GetService<IRepositoryContextFactory>()));
             services.AddScoped<IBuilderRepository>(provider => new BuilderRepository(connection, provider.GetService<IRepositoryContextFactory>()));

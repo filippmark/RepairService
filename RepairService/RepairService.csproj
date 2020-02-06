@@ -35,13 +35,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\components\Common\OrderCard.tsx" />
     <None Remove="ClientApp\src\components\Order\OrderAddress\OrderAddress.tsx" />
     <None Remove="ClientApp\src\components\Order\OrderDescription\Order.tsx" />
     <None Remove="ClientApp\src\components\Order\OrderPrice\OrderPrice.tsx" />
     <None Remove="ClientApp\src\components\Order\OrderTime\OrderDay\OrderDay.tsx" />
     <None Remove="ClientApp\src\components\Order\OrderTime\OrderTime.tsx" />
+    <None Remove="ClientApp\src\components\Profile\EmployerProfile\EmployerProfile.tsx" />
+    <None Remove="ClientApp\src\components\Profile\Profile.tsx" />
     <None Remove="ClientApp\src\components\SignUp.tsx" />
+    <None Remove="ClientApp\src\store\EmployerProfile.tsx" />
     <None Remove="ClientApp\src\store\Order.ts" />
+    <None Remove="ClientApp\src\store\SignIn.ts" />
+    <None Remove="ClientApp\src\store\SignUp.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,13 +55,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\components\Common\OrderCard\OrderCard.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Order\Order.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Order\OrderAddress\OrderAddress.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Order\OrderPrice\OrderPrice.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Order\OrderTime\OrderDay\OrderDay.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\Order\OrderTime\OrderTime.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Profile\EmployerProfile\EmployerProfile.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\components\Profile\Profile.tsx" />
     <TypeScriptCompile Include="ClientApp\src\components\SignUp\SignUp.tsx" />
+    <TypeScriptCompile Include="ClientApp\src\store\EmployerProfile.tsx" />
     <TypeScriptCompile Include="ClientApp\src\store\Order.ts" />
+    <TypeScriptCompile Include="ClientApp\src\store\SignIn.ts" />
+    <TypeScriptCompile Include="ClientApp\src\store\SignUp.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\components\Profile\Builder\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

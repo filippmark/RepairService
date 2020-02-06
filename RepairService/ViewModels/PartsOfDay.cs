@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace RepairService.ViewModels
 {
-    public class ReviewModel
+    public enum PartsOfDay
     {
-        
+        morning,
+        day,
+        evening,
+        all
     }
 }

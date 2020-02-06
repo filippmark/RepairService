@@ -14,8 +14,5 @@ namespace RepairService.ViewModels
 
         [Required]
         public string Password { get; set; }
-
-        [Required]
-        public string Phone { get; set; }
     }
 }

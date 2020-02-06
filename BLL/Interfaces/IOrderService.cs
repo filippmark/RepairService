@@ -12,5 +12,7 @@ namespace BLL.Interfaces
 
         public Task UpdateOrderStatus(int status, int orderId);
 
+        public  Task<IEnumerable<OrderDTO>>  GetEmployerOrders(int employerId, int pageSize, int pageIndex);
+
     }
 }

@@ -17,19 +17,23 @@ namespace BLL.DTO
         public string House { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Price { get; set; }
+        public decimal Reward { get; set; }
 
-        public string Description { get; set; }
+        public string ShortDescription { get; set; }
+
+        public string FullDescription { get; set; }
+
+        public PartsOfDayDTO PartOfDay { get; set; }
 
         public OrderStatusesDTO Status { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
-        public int EmployerId { get; set; }
+        public int? EmployerId { get; set; }
 
         public EmployerDTO Employer { get; set; }
 
-        public int BuilderId { get; set; }
+        public int? BuilderId { get; set; }
 
         public BuilderDTO Builder { get; set; }
     }

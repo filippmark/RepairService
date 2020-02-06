@@ -23,8 +23,11 @@ var OrderAddress = /** @class */ (function (_super) {
         _this._townInputHandler = function (event) {
             _this.props.setTownOrder(event.target.value);
         };
-        _this._streetHouseInputHandler = function (event) {
-            _this.props.setStreetHouseOrder(event.target.value);
+        _this._streetInputHandler = function (event) {
+            _this.props.setStreetOrder(event.target.value);
+        };
+        _this._houseInputHandler = function (event) {
+            _this.props.setHouseOrder(event.target.value);
         };
         return _this;
     }
@@ -34,8 +37,10 @@ var OrderAddress = /** @class */ (function (_super) {
             React.createElement("form", null,
                 React.createElement("label", { htmlFor: "town" }, " \u0413\u043E\u0440\u043E\u0434 "),
                 React.createElement("input", { type: "text", className: "form-control w-25", name: "townAddress", id: "town", onChange: this._townInputHandler }),
-                React.createElement("label", { htmlFor: "StreetHouse" }, " \u0423\u043B\u0438\u0446\u0430, \u0434\u043E\u043C "),
-                React.createElement("input", { type: "text", className: "form-control w-50 mb-1", name: "streetHouse", id: "StreetHouse", "aria-describedby": "orderShortDescHelp" }))));
+                React.createElement("label", { htmlFor: "StreetHouse" }, " \u0423\u043B\u0438\u0446\u0430 "),
+                React.createElement("input", { type: "text", className: "form-control w-25 mb-1", name: "street", id: "street", "aria-describedby": "orderShortDescHelp", onChange: this._streetInputHandler }),
+                React.createElement("label", { htmlFor: "StreetHouse" }, " \u0414\u043E\u043C "),
+                React.createElement("input", { type: "text", className: "form-control w-25 mb-1", name: "house", id: "house", "aria-describedby": "orderShortDescHelp", onChange: this._houseInputHandler }))));
     };
     return OrderAddress;
 }(React.Component));

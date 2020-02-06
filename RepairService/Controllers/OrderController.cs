@@ -33,10 +33,15 @@ namespace RepairService.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        [HttpGet("{id}/{pageSize}/{pageIndex}")]
-        public string Get(int id)
+        [HttpGet("{employerId}/{pageSize}/{pageIndex}")]
+        public async Task<IActionResult> Get(int employerId, int pageSize, int pageIndex)
         {
-            return null;
+
+            var orders = await _orderService.GetEmployerOrders(employerId, pageSize, pageIndex);
+
+            var orderModels = _mapper.Map<List<OrderModel>>(orders);
+
+            return Ok(orderModels);
         }
 
         [ValidateModel]
@@ -44,6 +49,7 @@ namespace RepairService.Controllers
         public async Task<IActionResult> Post(OrderModel model)
         {
             OrderDTO order = _mapper.Map<OrderDTO>(model);
+            order.CreatedAt = DateTime.Now;
             await _orderService.CreateOrder(order);
             return Ok();
         }

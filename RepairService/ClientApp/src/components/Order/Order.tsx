@@ -6,17 +6,37 @@ import OrderTime from './OrderTime/OrderTime';
 import OrderPrice from './OrderPrice/OrderPrice';
 import { RouteComponentProps } from 'react-router';
 import { ApplicationState } from '../../store';
-import * as OrderStore from '../../store/Order'
+import * as OrderStore from '../../store/Order';
+import * as SignInState from '../../store/SignIn';
 
 type OrderAddressProps =
     OrderStore.OrderState &
     typeof OrderStore.actionCreators &
-    RouteComponentProps<{}>;
+    RouteComponentProps<{}> & SignInState.SignInState;
 
 class Order extends React.Component<OrderAddressProps> {
 
+    componentDidMount() {
+        console.log(this.props);
+    }
+
     _addOrder = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
 
+
+        this.props.registerOrder(
+            {   
+                employerId: this.props.id,
+                shortDescription: this.props.shortDescription,
+                fullDescription: this.props.fullDescription,
+                date: this.props.date,
+                isNegotiable: this.props.isNegotiable,
+                partOfDay: this.props.partOfDay,
+                reward: this.props.reward,
+                town: this.props.town,
+                street: this.props.street,
+                house: this.props.house
+            });
+        
     }
 
     public render() {
@@ -34,6 +54,9 @@ class Order extends React.Component<OrderAddressProps> {
 }
 
 export default connect(
-    (state: ApplicationState) => state.order,
+    (state: ApplicationState) => {
+        let props = Object.create(null);
+        return Object.assign(props, state.signIn, state.order);
+    },
     OrderStore.actionCreators
 )(Order);

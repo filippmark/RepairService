@@ -17,19 +17,23 @@ namespace DAL.Entities
         public string House { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Price { get; set; }
+        public decimal Reward { get; set; }
 
-        public string Description { get; set; }
+        public string ShortDescription { get; set; }
 
+        public string FullDescription { get; set; }
+       
         public OrderStatuses Status { get; set; }
+
+        public PartsOfDay partsOfDay { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
-        public int EmployerId { get; set; }
+        public int? EmployerId { get; set; }
 
         public Employer Employer { get; set; }
 
-        public int BuilderId { get; set; }
+        public int? BuilderId { get; set; }
 
         public Builder Builder { get; set; }
     }

@@ -1,29 +1,25 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
+import * as SignInStore from '../../store/SignIn';
 
-export interface IAppProps {}
+export type IAppProps = typeof SignInStore.ActionCreators;
 
 class SignIn extends React.Component<IAppProps> {
   state = {
     email: "",
-    passw: "",
+    password: "",
     role: ""
   };
 
-  _submitHandler = async (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  _submitHandler = async ( event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
-    try {
-      let response = axios.post("", {
+    console.log(this.state);
+    this.props.signIn({
         email: this.state.email,
-        passw: this.state.passw,
+        password: this.state.password,
         role: this.state.role
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    });
+
   };
 
   _handleChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -38,63 +34,35 @@ class SignIn extends React.Component<IAppProps> {
       <form>
         <div className="form-group">
           <label htmlFor="email"> Адрес электронной почты</label>
-          <input
-            className="form-control"
-            type="password"
-            id="email"
-            name="email"
-            onChange={this._handleChange}
-          />
+          <input className="form-control" type="email" id="email" name="email" onChange={this._handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="password">Пароль</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="passw"
-            onChange={this._handleChange}
-          />
+          <input type="password" className="form-control" id="password" name="password" onChange={this._handleChange}/>
         </div>
-        <div className="form-group form-check">
-          <input
-            type="radio"
-            value="employer"
-            name="role"
-            className="form-check-input"
-            id="employer"
-            onChange={this._handleChange}
-          />
-          <label className="form-check-label" htmlFor="employer">
-            {" "}
-            В качестве работодателя
-          </label>
+        <div>
+          <div className="form-check form-check-inline">
+            <input type="radio" value="employer" name="role" className="form-check-input" id="employer" onChange={this._handleChange} />
+            <label className="form-check-label" htmlFor="employer">
+                        В качестве работодателя
+            </label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input type="radio" value="builder" name="role" className="form-check-input" id="builder" onChange={this._handleChange} />
+            <label className="form-check-label" htmlFor="builder">
+                        В качестве строителя
+            </label>
+          </div>
         </div>
-        <div className="form-group form-check">
-          <input
-            type="radio"
-            value="builder"
-            name="role"
-            className="form-check-input"
-            id="builder"
-            onChange={this._handleChange}
-          />
-          <label className="form-check-label" htmlFor="builder">
-            {" "}
-            В качестве строителя
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={this._submitHandler}
-        >
-          {" "}
-          Войти{" "}
+        <button type="submit" className="form-group  btn btn-primary" onClick={this._submitHandler}>
+            Войти
         </button>
       </form>
     );
   }
 }
 
-export default connect()(SignIn);
+export default connect(
+    null,
+    SignInStore.ActionCreators
+)(SignIn);

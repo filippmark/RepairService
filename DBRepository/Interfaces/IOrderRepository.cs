@@ -9,7 +9,7 @@ namespace DAL.Interfaces
     public interface IOrderRepository
     {
 
-        Task<List<Order>> GetOrders(int amount, int pageIndex);
+        Task<IEnumerable<Order>> GetEmployerOrders(int employerId, int pageSize, int pageIndex);
 
         Task AddOrder(Order order);
 

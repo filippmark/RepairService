@@ -6,6 +6,7 @@ using DAL.Entities;
 using DAL.Interfaces;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace DAL.Repositories
 {
@@ -20,7 +21,8 @@ namespace DAL.Repositories
             using(var context = Context.CreateDbContext(ConnectionString))
             {
                 context.Orders.Add(order);
-                await context.SaveChangesAsync();
+                int result = await context.SaveChangesAsync();
+                Debug.WriteLine("${0}!!!!!!!!!!!!!!!!!!", result, "validation");
             }
                     
         }
@@ -47,13 +49,13 @@ namespace DAL.Repositories
             }
         }
 
-        public async Task<List<Order>> GetOrders(int pageSize, int pageIndex)
+        public async Task<IEnumerable<Order>> GetEmployerOrders(int employerId, int pageSize, int pageIndex)
         {
             using (var context = Context.CreateDbContext(ConnectionString))
             {
                 var orders = context.Orders.AsQueryable();
 
-                return await orders.OrderByDescending(p => p.CreatedAt).Skip(pageSize * pageIndex).Take(pageSize).ToListAsync();
+                return await orders.Where(p => p.EmployerId == employerId).OrderByDescending(p => p.CreatedAt).Skip(pageSize * pageIndex).Take(pageSize).ToListAsync();
             }
         }
 

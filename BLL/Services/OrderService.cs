@@ -28,6 +28,15 @@ namespace BLL.Services
             await _orderRepository.AddOrder(order);
         }
 
+        public async Task<IEnumerable<OrderDTO>> GetEmployerOrders(int employerId, int pageSize, int pageIndex)
+        {
+            IEnumerable<Order> orders = await _orderRepository.GetEmployerOrders(employerId, pageSize, pageIndex);
+            
+            var ordersDto = _mapper.Map<List<OrderDTO>>(orders);
+
+            return ordersDto;
+        }
+
         public async Task UpdateOrderStatus(int status, int orderId)
         {
             Order order = await _orderRepository.GetOrder(orderId);
