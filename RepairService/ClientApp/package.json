@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@types/qs": "^6.9.0",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.3.1",
     "connected-react-router": "6.2.1",
     "history": "4.7.2",
